@@ -1,0 +1,19 @@
+.btn span {
+    margin: 0 20px;
+    font-weight: 900;
+    cursor: pointer;
+    padding: 5px 10px;
+    border: 2px solid;
+    border-radius: 50%;
+}
+
+.task-lists{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ccc;
+    padding: 20px;
+    width: 60%;
+    margin: 0 auto;
+    color: orange;
+}
