@@ -8,9 +8,7 @@ export default class TaskLists extends Component {
   }
   
   handleClickCompleted = (e) => {
-    if (!e.isCompleted) {
-      e.isCompleted = true;
-    } else { e.isCompleted = false }
+    e.isCompleted = true;
     this.props.completedTask(this.props.tasks)
   }
 
@@ -23,7 +21,7 @@ export default class TaskLists extends Component {
     return (
       <div>
           {tasks.map( (task, index) => 
-            (<TaskItem key={task.id} item={task}
+            (<TaskItem key={task.id} item={task} id={index}
                         handleClickCompleted={() => this.handleClickCompleted(task)}
                         handleClickDelete={() => this.handleClickDelete(index)}
           />))}

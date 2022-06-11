@@ -4,14 +4,14 @@ import './style.css'
 
 export default class TaskItem extends Component {
   render() {
-    let { item, handleClickCompleted, handleClickDelete} = this.props
+    let { item, handleClickCompleted, handleClickDelete, id} = this.props
 
     let isCompleted = item.isCompleted;
     
     let taskStyle = {
       margin: '0 10px',
       fontSize: '20px',
-      color: isCompleted?'#ccc':'orange',
+      color: isCompleted?'#ccc':'#fff',
       textDecoration: isCompleted?'line-through':'none',
       whiteSpace: 'nowrap',
       overflow: 'hidden',
@@ -21,7 +21,7 @@ export default class TaskItem extends Component {
     return (
       <div className='task-lists'>
         <p style={taskStyle}>
-          {item.todo}
+        {id+1}. {item.todo}
         </p>
         <div style={{display:'flex'}}>
           <HandleButton btn='&#x02713;' 
