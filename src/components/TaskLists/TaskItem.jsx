@@ -11,7 +11,7 @@ export default class TaskItem extends Component {
     let taskStyle = {
       margin: '0 10px',
       fontSize: '20px',
-      color: isCompleted?'#ccc':'#fff',
+      color: isCompleted?'#ccc':'aqua',
       textDecoration: isCompleted?'line-through':'none',
       whiteSpace: 'nowrap',
       overflow: 'hidden',

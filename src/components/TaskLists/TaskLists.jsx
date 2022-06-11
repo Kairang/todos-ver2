@@ -8,7 +8,9 @@ export default class TaskLists extends Component {
   }
   
   handleClickCompleted = (e) => {
-    e.isCompleted = true;
+    if (!e.isCompleted) {
+      e.isCompleted = true;
+    } else { e.isCompleted = false }
     this.props.completedTask(this.props.tasks)
   }
 
