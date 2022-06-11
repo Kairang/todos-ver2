@@ -3,11 +3,11 @@ import './style.css'
 
 export default class HandleButton extends Component {
   render() {
-    const { btn, style } = this.props
+    const { btn, style, handleClick } = this.props
     return (
       <>
         <div className='btn'>
-            <span onClick={this.props.handleClick} style={style}>{btn}</span>
+            <span onClick={handleClick} style={style}>{btn}</span>
         </div>
       </>
     )

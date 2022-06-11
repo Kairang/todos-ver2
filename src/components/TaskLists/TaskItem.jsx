@@ -4,28 +4,33 @@ import './style.css'
 
 export default class TaskItem extends Component {
   render() {
-    let isCompleted = this.props.item.isCompleted;
+    let { item, handleClickCompleted, handleClickDelete} = this.props
+
+    let isCompleted = item.isCompleted;
     
     let taskStyle = {
       margin: '0 10px',
       fontSize: '20px',
       color: isCompleted?'#ccc':'orange',
       textDecoration: isCompleted?'line-through':'none',
+      whiteSpace: 'nowrap',
+      overflow: 'hidden',
+      textOverflow: 'ellipsis'
     }
 
     return (
       <div className='task-lists'>
-        <span style={taskStyle}>
-          {this.props.item.todo}
-        </span>
+        <p style={taskStyle}>
+          {item.todo}
+        </p>
         <div style={{display:'flex'}}>
           <HandleButton btn='&#x02713;' 
-                        style={{color:'greenyellow'}}
-                        handleClick={this.props.handleClickCompleted}
+                        style={{color: isCompleted?'#666':'greenyellow'}}
+                        handleClick={handleClickCompleted}
           />
           <HandleButton btn='&#x02717;'
                         style={{color:'red'}}
-                        handleClick={this.props.handleClickDelete}
+                        handleClick={handleClickDelete}
           />
         </div>
       </div>

@@ -22,6 +22,7 @@ export default class FormInput extends Component {
             return;
         }
         let task = {
+            id: new Date().getTime(),
             todo: this.state.todo,
             isCompleted: false,
         };

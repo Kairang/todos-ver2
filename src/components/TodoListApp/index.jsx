@@ -24,18 +24,19 @@ export default class TodoListApp extends Component {
   }
   
   deleteTask = (index) => {
-    let currentTaskLists = this.state.taskLists
-    currentTaskLists.splice(index, 1)
+    let taskLists = this.state.taskLists
+    taskLists.splice(index, 1)
     this.setState({
-      taskLists: currentTaskLists,
+      taskLists: taskLists,
     })
   }
 
   render() {
     const { taskLists } = this.state
+    const { title } = this.props
     return (
       <>
-        <h1>TO DO LIST APPLICATION</h1>
+        <h1 style={{color:'white'}}>{title}</h1>
         <FormInput addNewTask={this.addNewTask}/>
         <TaskLists tasks={taskLists}
                    deleteTask={this.deleteTask}
