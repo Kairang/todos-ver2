@@ -1,10 +1,14 @@
 .panigation-wrapper{
-    width: 200px;
-    margin: 0 auto;
+    width: 60%;
+    margin: 30px auto;
     display: flex;
     justify-content: space-between;
-  }
-  
-  .btn--active{
-    color: red;
-  }
+}
+
+.panigation-wrapper button {
+  width: 100px;
+}
+.panigation-wrapper span {
+  font-size: 20px;
+  color: #fff;
+}

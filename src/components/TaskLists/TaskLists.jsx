@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import TaskItem from './TaskItem'
+import SelectBox from './SelectBox'
+import Panigation from '../Pagination'
 
 export default class TaskLists extends Component {
   constructor(props){
@@ -7,26 +9,51 @@ export default class TaskLists extends Component {
       this.props = props
   }
   
-  handleClickCompleted = (e) => {
-    if (!e.isCompleted) {
-      e.isCompleted = true;
-    } else { e.isCompleted = false }
+  handleClickCompleted = (task) => {
+    task.isCompleted = true;
     this.props.completedTask(this.props.tasks)
   }
 
-  handleClickDelete = (e) => {
-    this.props.deleteTask(e)
+  handleClickDelete = (index) => {
+    this.props.deleteTask(index)
+  }
+
+  handleSelect = (e) => {
+    const option = e.target.value
+    this.props.selectOption(option)
+  }
+
+  getTaskInCurrentPage(limit, tasks) {
+    const { currentPage } = this.props
+    const startIndex = currentPage * limit - limit
+    return [...tasks.slice(startIndex, startIndex + limit)]
   }
 
   render() {
-    const { tasks } = this.props
+    const { tasks, option, currentPage, handleSetCurrentPage } = this.props
+    const limit = 6;
+    let taskLists = []
+
+    if (option === 'all') {
+      taskLists = tasks
+    } else if (option === 'completed') {
+      taskLists = tasks.filter( e => e.isCompleted)
+    } else { taskLists = tasks.filter( e => !e.isCompleted)}
+    
     return (
       <div>
-          {tasks.map( (task, index) => 
-            (<TaskItem key={task.id} item={task} id={index}
+          <SelectBox tasks={tasks} handleSelect={(e) => this.handleSelect(e)}/>
+          {this.getTaskInCurrentPage(limit, taskLists).map( (task, index) => 
+            (<TaskItem key={task.id} item={task} id={index} limit={limit} page={currentPage}
                         handleClickCompleted={() => this.handleClickCompleted(task)}
                         handleClickDelete={() => this.handleClickDelete(index)}
           />))}
+          <Panigation
+            currentPage={currentPage}
+            taskLists={taskLists}
+            limit={limit}
+            handleSetCurrentPage={handleSetCurrentPage}
+          />
       </div>
     )
   }

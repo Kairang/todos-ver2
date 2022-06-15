@@ -37,7 +37,7 @@ export default class FormInput extends Component {
         })
     }
 
-    handleOnEnterDown = (e) => {
+    handleOnEnterPress = (e) => {
         if (e.code === 'Enter') {
             if(!this.state.todo.trim()) {
                 alert('Please enter a new task!!');
@@ -62,10 +62,10 @@ export default class FormInput extends Component {
   render() {
     
     return (
-      <div style={{marginBottom: '50px'}}>
+      <div style={{margin: '30px 0'}}>
           <InputBox onChange={this.handleOnChange}
                     value={this.state.todo}
-                    onEnterPress={this.handleOnEnterDown}
+                    onEnterPress={this.handleOnEnterPress}
           />
           <AddButton onClick={this.handleOnClick}/>
       </div>

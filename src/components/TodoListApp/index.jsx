@@ -1,20 +1,19 @@
 import React, { Component } from 'react'
 import FormInput from '../TaskInput/FormInput'
 import TaskLists from '../TaskLists/TaskLists'
-// import Panigation from '../Pagination'
-
 
 export default class TodoListApp extends Component {
   constructor(props) {
     super(props)
     this.state = {
       taskLists: JSON.parse(localStorage.getItem('Todo List')) || [],
+      selectOption: 'all',
       currentPage: 1,
     }
   }
 
-  addToLocalStorage = (todo) => {
-    localStorage.setItem('Todo List', JSON.stringify(todo))
+  addToLocalStorage = (todos) => {
+    localStorage.setItem('Todo List', JSON.stringify(todos))
   }
 
   addNewTask = (todo) => {
@@ -37,34 +36,36 @@ export default class TodoListApp extends Component {
     })
   }
 
-  getTaskInCurrentPage() {
-    const startIndex = this.state.currentPage * 5 - 5
-    return [...this.state.taskLists.slice(startIndex, startIndex + 5)]
+  selectOption = (option) => {
+    this.setState({
+      currentPage: 1,
+      selectOption: option,
+    })
   }
 
-  handleSetCurrentPage(page) {
+  handleSetCurrentPage = (newPage) => {
     this.setState({
-      currentPage: page
+      currentPage: newPage
     })
   }
 
   render() {
-    const { taskLists } = this.state
+    const { taskLists, selectOption, currentPage } = this.state
     const { title } = this.props
     this.addToLocalStorage(taskLists)
+
     return (
       <>
-        <h1 style={{color:'white'}}>{title}</h1>
-        <FormInput addNewTask={this.addNewTask}/>
+        <h1 style={{color:'white', paddingTop: '30px', margin:'0'}}>{title}</h1>
+        <FormInput addNewTask={this.addNewTask} />
         <TaskLists tasks={taskLists}
+                   option={selectOption}
+                   currentPage={currentPage}
                    deleteTask={this.deleteTask}
                    completedTask={this.completedTask}
+                   selectOption={this.selectOption}
+                   handleSetCurrentPage={this.handleSetCurrentPage}
         />
-        {/* <Panigation
-            currentPage={currentPage}
-            taskLists={taskLists}
-            handleSetCurrentPage={this.handleSetCurrentPage}
-        /> */}
       </>
     )
   }

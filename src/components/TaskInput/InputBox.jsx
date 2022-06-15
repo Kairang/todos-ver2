@@ -3,7 +3,7 @@ import './style.css'
 
 export default class InputBox extends Component {
   render() {
-    let { onChange, value, onEnterPress } = this.props
+    let { value, onChange, onEnterPress } = this.props
     return (
       <input type="text"
              placeholder='Add new task here!'

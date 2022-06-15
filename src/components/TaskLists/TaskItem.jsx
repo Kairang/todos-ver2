@@ -4,7 +4,7 @@ import './style.css'
 
 export default class TaskItem extends Component {
   render() {
-    let { item, handleClickCompleted, handleClickDelete, id} = this.props
+    let { item, id, limit, page, handleClickCompleted, handleClickDelete} = this.props
 
     let isCompleted = item.isCompleted;
     
@@ -19,9 +19,9 @@ export default class TaskItem extends Component {
     }
 
     return (
-      <div className='task-lists'>
+      <div className= 'task-lists'>
         <p style={taskStyle}>
-        {id+1}. {item.todo}
+        {id + ((page -1)*limit +1)}. {item.todo}
         </p>
         <div style={{display:'flex'}}>
           <HandleButton btn='&#x02713;' 

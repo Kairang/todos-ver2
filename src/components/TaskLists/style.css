@@ -16,3 +16,14 @@
     width: 60%;
     margin: 0 auto;
 }
+.select--box {
+    width: 80%;
+    display: flex;
+    justify-content: flex-end;
+    margin: 10px 0;
+}
+
+.task-completed {
+    opacity: 0;
+    visibility: hidden;
+}
