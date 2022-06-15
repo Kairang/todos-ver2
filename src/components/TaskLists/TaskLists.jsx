@@ -14,7 +14,8 @@ export default class TaskLists extends Component {
     this.props.completedTask(this.props.tasks)
   }
 
-  handleClickDelete = (index) => {
+  handleClickDelete = (id) => {
+    let index = this.props.tasks.findIndex( e => e.id === id)
     this.props.deleteTask(index)
   }
 
@@ -46,7 +47,7 @@ export default class TaskLists extends Component {
           {this.getTaskInCurrentPage(limit, taskLists).map( (task, index) => 
             (<TaskItem key={task.id} item={task} id={index} limit={limit} page={currentPage}
                         handleClickCompleted={() => this.handleClickCompleted(task)}
-                        handleClickDelete={() => this.handleClickDelete(index)}
+                        handleClickDelete={() => this.handleClickDelete(task.id)}
           />))}
           <Panigation
             currentPage={currentPage}

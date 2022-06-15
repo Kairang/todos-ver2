@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import InputBox from './InputBox'
 import AddButton from './AddButton'
+import { toast } from 'react-toastify';
 
 export default class FormInput extends Component {
     constructor(props) {
@@ -20,7 +21,7 @@ export default class FormInput extends Component {
 
     handleOnClick = () => {
         if(!this.state.todo.trim()) {
-            alert('Please enter a new task!!');
+            toast.error('Please enter a new task!!', {theme: "colored"})
             this.setState({
                 todo: ''
             })
@@ -40,7 +41,7 @@ export default class FormInput extends Component {
     handleOnEnterPress = (e) => {
         if (e.code === 'Enter') {
             if(!this.state.todo.trim()) {
-                alert('Please enter a new task!!');
+                toast.error('Please enter a new task!!', {theme: "colored"})
                 this.setState({
                     todo: ''
                 })

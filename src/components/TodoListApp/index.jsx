@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import FormInput from '../TaskInput/FormInput'
 import TaskLists from '../TaskLists/TaskLists'
+import { toast } from 'react-toastify';
 
 export default class TodoListApp extends Component {
   constructor(props) {
@@ -20,12 +21,14 @@ export default class TodoListApp extends Component {
     this.setState({
       taskLists: [todo, ...this.state.taskLists]
     })
+    toast.success('The task has been added!', { theme: 'colored'})
   }
   
   completedTask = (tasks) => {
     this.setState({
       taskLists: tasks
     })
+    toast.info('Task has been completed', { theme: 'colored'})
   }
   
   deleteTask = (index) => {
@@ -34,6 +37,7 @@ export default class TodoListApp extends Component {
     this.setState({
       taskLists: taskLists,
     })
+    toast.warning('Task has been deleted', { theme: 'colored'})
   }
 
   selectOption = (option) => {
